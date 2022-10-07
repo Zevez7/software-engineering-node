@@ -4,13 +4,14 @@ import TuitDaoI from "../interfaces/TuitDao";
 
 export default class TuitDao implements TuitDaoI {
   private static tuitDao: TuitDao | null = null;
-  
 
   async findAllTuits(): Promise<Tuit[]> {
     return await TuitModel.find();
   }
   async findTuitsByUser(uid: string): Promise<any> {
-    return await TuitModel.findById(uid);
+    const tuitMongooseModels = await TuitModel.find({ postedBy: uid });
+
+    return tuitMongooseModels;
   }
 
   async findTuitById(tid: string): Promise<any> {
