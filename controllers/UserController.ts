@@ -17,14 +17,18 @@ export default class UserController implements UserControllerI {
   }
   findAllUsers = (req: Request, res: Response) =>
     this.userDao.findAllUsers().then((users) => res.json(users));
+
   findUserById = (req: Request, res: Response) =>
     this.userDao.findUserById(req.params.userid).then((user) => res.json(user));
+
   createUser = (req: Request, res: Response) =>
     this.userDao.createUser(req.body).then((user) => res.json(user));
+
   deleteUser = (req: Request, res: Response) =>
     this.userDao
       .deleteUser(req.params.userid)
       .then((status) => res.json(status));
+
   updateUser = (req: Request, res: Response) =>
     this.userDao
       .updateUser(req.params.userid, req.body)
