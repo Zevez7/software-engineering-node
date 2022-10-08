@@ -9,9 +9,7 @@ export default class TuitDao implements TuitDaoI {
     return await TuitModel.find();
   }
   async findTuitsByUser(uid: string): Promise<any> {
-    const tuitMongooseModels = await TuitModel.find({ postedBy: uid });
-
-    return tuitMongooseModels;
+    return await TuitModel.find({ postedBy: uid });
   }
 
   async findTuitById(tid: string): Promise<any> {
