@@ -1,9 +1,9 @@
 import { Request, Response, Express } from "express";
 
 import FollowDao from "../daos/FollowDao";
-import FollowControllerI from "../interfaces/FollowController";
+import FollowControllerI from "../interfaces/follow/FollowController";
 
-export default class FollowController {
+export default class FollowController implements FollowControllerI {
   private static followDao: FollowDao = FollowDao.getInstance();
   private static followController: FollowController | null = null;
 
@@ -73,23 +73,4 @@ export default class FollowController {
     FollowController.followDao
       .updateFollowing(req.params.fid, req.body)
       .then((follow) => res.json(follow));
-  // findTuitsByUser = (req: Request, res: Response) =>
-  //   FollowController.followDao
-  //     .findTuitsByUser(req.params.uid)
-  //     .then((tuits) => res.json(tuits));
-
-  // findTuitById = (req: Request, res: Response) =>
-  //   FollowController.followDao
-  //     .findTuitById(req.params.tid)
-  //     .then((tuit) => res.json(tuit));
-
-  // deleteTuit = (req: Request, res: Response) =>
-  //   FollowController.followDao
-  //     .deleteTuit(req.params.tid)
-  //     .then((status) => res.json(status));
-
-  // updateTuit = (req: Request, res: Response) =>
-  //   FollowController.followDao
-  //     .updateTuit(req.params.tid, req.body)
-  //     .then((status) => res.json(status));
 }

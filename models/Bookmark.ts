@@ -1,4 +1,4 @@
-import User from "./User";
+import User from "./user/User";
 import Tuit from "./Tuit";
 
 export default class Bookmark {

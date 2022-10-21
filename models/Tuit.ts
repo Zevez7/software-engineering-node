@@ -1,4 +1,4 @@
-import User from "./User";
+import User from "./user/User";
 
 /**
  * source code for the classes tuit

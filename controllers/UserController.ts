@@ -1,7 +1,7 @@
 import { Request, Response, Express } from "express";
 
 import UserDao from "../daos/UserDao";
-import UserControllerI from "../interfaces/UserController";
+import UserControllerI from "../interfaces/user/UserController";
 
 export default class UserController implements UserControllerI {
   private static userDao: UserDao = UserDao.getInstance();
