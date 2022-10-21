@@ -5,7 +5,8 @@ import mongoose from "mongoose";
 import UserController from "./controllers/UserController";
 import MoviesController from "./movies/movies-controller";
 import UserDao from "./daos/UserDao";
-import TuitDao from "./daos/TuitDao";
+import TuitDao from "./daos/FollowDao";
+import FollowController from "./controllers/FollowController";
 
 const cors = require("cors");
 const app = express();
@@ -16,9 +17,11 @@ mongoose.connect("mongodb://127.0.0.1:27017/tuiter");
 
 // const movieController = new MoviesController(app);
 
-const userController = new UserController(app, new UserDao());
+const userController = UserController.getInstance(app);
 
-const tuitController = new TuitController(app, new TuitDao());
+const tuitController = TuitController.getInstance(app);
+
+const followController = FollowController.getInstance(app);
 
 const PORT = 4000;
 app.listen(process.env.PORT || PORT);
