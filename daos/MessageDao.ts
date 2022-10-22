@@ -46,15 +46,10 @@ export default class MessageDao implements MessageDaoI {
         { to: uid2, from: uid1 },
       ],
     })
-      .populate("to")
-      .populate("from")
+      .populate("to", "username firstName lastName")
+      .populate("from", "username firstName lastName")
       .exec();
 
-    // const part2 = await MessageModel.find({ to: uid2, from: uid1 })
-    //   .populate("to")
-    //   .populate("from")
-    //   .exec();
-
-    return part1.concat(part1);
+    return part1;
   }
 }

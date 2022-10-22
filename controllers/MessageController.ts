@@ -3,8 +3,7 @@ import { Request, Response, Express } from "express";
 import MessageDao from "../daos/MessageDao";
 import MessageControllerI from "../interfaces/message/MessageController";
 
-// implements MessageControllerI
-export default class MessageController {
+export default class MessageController implements MessageControllerI {
   private static messageDao: MessageDao = MessageDao.getInstance();
   private static messageController: MessageController | null = null;
 
@@ -19,20 +18,25 @@ export default class MessageController {
         MessageController.messageController.deleteMessage
       );
 
-      // app.get(
-      //   "/message/user/:uid",
-      //   MessageController.messageController.findMessageTuitByUserId
-      // );
+      app.get(
+        "/message/from/user/:uid",
+        MessageController.messageController.findSentMessageByUserId
+      );
 
-      // app.delete(
-      //   "/message/user/:uid/unmessageall",
-      //   MessageController.messageController.unmessageAllByUserId
-      // );
+      app.get(
+        "/message/to/user/:uid",
+        MessageController.messageController.findRecievedMessageByUserId
+      );
 
-      // app.put(
-      //   "/message/:bid",
-      //   MessageController.messageController.updateMessage
-      // );
+      app.put(
+        "/message/update/:mid",
+        MessageController.messageController.updateMessage
+      );
+
+      app.get(
+        "/message/user1/:uid1/user2/:uid2",
+        MessageController.messageController.findMessageOf2Users
+      );
     }
 
     return MessageController.messageController;
@@ -50,18 +54,23 @@ export default class MessageController {
       .deleteMessage(req.params.mid)
       .then((status) => res.json(status));
 
-  // findMessageTuitByUserId = (req: Request, res: Response) =>
-  //   MessageController.messageDao
-  //     .findMessageTuitByUserId(req.params.uid)
-  //     .then((messages) => res.json(messages));
+  findSentMessageByUserId = (req: Request, res: Response) =>
+    MessageController.messageDao
+      .findSentMessageByUserId(req.params.uid)
+      .then((messages) => res.json(messages));
 
-  // unmessageAllByUserId = (req: Request, res: Response) =>
-  //   MessageController.messageDao
-  //     .unmessageAllByUserId(req.params.uid)
-  //     .then((status) => res.json(status));
+  findRecievedMessageByUserId = (req: Request, res: Response) =>
+    MessageController.messageDao
+      .findRecievedMessageByUserId(req.params.uid)
+      .then((messages) => res.json(messages));
 
-  // updateMessage = (req: Request, res: Response) =>
-  //   MessageController.messageDao
-  //     .updateMessage(req.params.bid, req.body)
-  //     .then((message) => res.json(message));
+  updateMessage = (req: Request, res: Response) =>
+    MessageController.messageDao
+      .updateMessage(req.params.mid, req.body)
+      .then((message) => res.json(message));
+
+  findMessageOf2Users = (req: Request, res: Response) =>
+    MessageController.messageDao
+      .findMessageOf2Users(req.params.uid1, req.params.uid2)
+      .then((messages) => res.json(messages));
 }
