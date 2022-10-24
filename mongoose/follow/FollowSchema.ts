@@ -1,3 +1,6 @@
+/**
+ * @file defining follow schema for mongoose
+ */
 import mongoose from "mongoose";
 
 const FollowSchema = new mongoose.Schema(

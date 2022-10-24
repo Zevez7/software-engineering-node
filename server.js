@@ -1,8 +1,10 @@
-const express = require('express');
+const express = require("express");
 const app = express();
 
-app.get('/hello', (req, res) =>
-  res.send('Hello World!'));
+/**
+ * @file server file to run the ports
+ */
+app.get("/hello", (req, res) => res.send("Hello World!"));
 
 const PORT = 4000;
 app.listen(PORT);

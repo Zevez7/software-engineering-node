@@ -1,3 +1,6 @@
+/**
+ * @file Creating mongoose model from bookmark schema
+ */
 import mongoose from "mongoose";
 import BookmarkSchema from "./BookmarkSchema";
 

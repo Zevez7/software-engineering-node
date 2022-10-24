@@ -1,3 +1,7 @@
+
+/**
+ * @file Creating mongoose model from message schema
+ */
 import mongoose from "mongoose";
 import MessageSchema from "./MessageSchema";
 

@@ -1,3 +1,6 @@
+/**
+ * @file followDao interface
+ */
 import Follow from "../../models/Follow";
 import User from "../../models/user/User";
 

@@ -1,3 +1,6 @@
+/**
+ * @file defining user schema for mongoose
+ */
 import mongoose from "mongoose";
 
 const UserSchema = new mongoose.Schema(
