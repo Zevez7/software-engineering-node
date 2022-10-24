@@ -1,3 +1,6 @@
+/**
+ * @file node server, connect database with models and routes
+ */
 import express, { Request, Response } from "express";
 import bodyParser from "body-parser";
 import TuitController from "./controllers/TuitController";
