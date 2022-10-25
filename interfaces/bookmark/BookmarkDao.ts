@@ -6,7 +6,7 @@ import Tuit from "../../models/Tuit";
 import User from "../../models/user/User";
 
 /**
- * Interface for bookmarkDao
+ * @interface BookmarkModel interface
  */
 export default interface BookmarkDao {
   /**
