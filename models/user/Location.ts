@@ -1,4 +1,7 @@
 /**
+ * @file location enum
+ */
+/**
  * location default for latitude and longitude
  * @class location
  *
