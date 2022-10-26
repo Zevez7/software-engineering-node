@@ -1,4 +1,8 @@
 /**
+ * @file account type enum
+ */
+
+/**
  * Enum for account type
  * @enum {string}
  */

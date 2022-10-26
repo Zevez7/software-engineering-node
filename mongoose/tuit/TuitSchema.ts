@@ -3,6 +3,11 @@
  */
 import mongoose from "mongoose";
 
+/**
+ * TuitSchema
+ * @constructor TuitSchema
+ */
+
 const TuitSchema = new mongoose.Schema(
   {
     tuit: String,

@@ -1,4 +1,6 @@
-
+/**
+ * @file enum for martial status
+ */
 
 /**
  * martial status enum

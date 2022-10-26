@@ -3,6 +3,10 @@
  */
 import mongoose from "mongoose";
 
+/**
+ * BookmarkSchema
+ * @constructor BookmarkSchema
+ */
 const BookmarkSchema = new mongoose.Schema(
   {
     bookmarkedTuit: { type: mongoose.Schema.Types.ObjectId, ref: "TuitModel" },

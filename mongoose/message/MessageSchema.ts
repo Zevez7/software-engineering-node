@@ -3,6 +3,11 @@
  */
 import mongoose from "mongoose";
 
+/**
+ * MessageSchema
+ * @constructor MessageSchema
+ */
+
 const MessageSchema = new mongoose.Schema(
   {
     message: String,

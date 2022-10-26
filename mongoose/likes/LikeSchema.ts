@@ -4,6 +4,10 @@
 import mongoose, { Schema } from "mongoose";
 import Like from "../../models/Like";
 
+/**
+ * LikeSchema
+ * @constructor LikeSchema
+ */
 const LikeSchema = new mongoose.Schema<Like>(
   {
     tuit: { type: Schema.Types.ObjectId, ref: "TuitModel" },
