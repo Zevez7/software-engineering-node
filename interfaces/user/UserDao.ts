@@ -5,7 +5,6 @@ import User from "../../models/user/User";
 
 /**
  * @interface UserDao interface
- * @property {UserDao} UserDao Singleton DAO implementing CRUD operation
  */
 export default interface UserDao {
   /**

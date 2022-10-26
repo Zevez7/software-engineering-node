@@ -5,7 +5,6 @@ import Like from "../../models/Like";
 
 /**
  * @interface LikeDaoI interface
- * @property {LikeDao} LikeDao Singleton DAO implementing like CRUD operation
  */
 
 export default interface LikeDaoI {

@@ -7,7 +7,7 @@ import TuitDaoI from "../interfaces/tuit/TuitDao";
 
 /**
  * @class TuitDao implements TuitDaoI
- * @property {TuitDao} TuitDao Singleton DAO implementing tuit CRUD operation
+ * @property {TuitDao} TuitDao Singleton DAO implementing CRUD operation
  */
 export default class TuitDao implements TuitDaoI {
   private static tuitDao: TuitDao | null = null;

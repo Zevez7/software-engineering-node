@@ -5,7 +5,6 @@ import Tuit from "../../models/Tuit";
 
 /**
  * @interface TuitDao interface
- * @property {TuitDao} TuitDao Singleton DAO implementing CRUD operation
  */
 export default interface TuitDao {
   /**

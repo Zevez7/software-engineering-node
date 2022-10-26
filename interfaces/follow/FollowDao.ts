@@ -5,8 +5,7 @@ import Follow from "../../models/Follow";
 import User from "../../models/user/User";
 
 /**
- * @interface FollowDao inferface 
-
+ * @interface FollowDao inferface
  */
 export default interface FollowDao {
   /**
