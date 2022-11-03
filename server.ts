@@ -15,8 +15,8 @@ import LikeController from "./controllers/LikeController";
 const cors = require("cors");
 const app = express();
 
-app.use(cors());
 app.use(express.json());
+app.use(cors());
 
 const address = `mongodb+srv://datnguyen:datnguyentuiter@cluster0.6eip3ug.mongodb.net/?retryWrites=true&w=majority`;
 mongoose.connect(address);
@@ -26,9 +26,9 @@ mongoose.connect(address);
 const userController = UserController.getInstance(app);
 const tuitController = TuitController.getInstance(app);
 const followController = FollowController.getInstance(app);
-const bookmarkController = BookmarkController.getInstance(app);
-const messageController = MessageController.getInstance(app);
-const likesController = LikeController.getInstance(app);
+// const bookmarkController = BookmarkController.getInstance(app);
+// const messageController = MessageController.getInstance(app);
+// const likesController = LikeController.getInstance(app);
 
 // const PORT = 5000;
 app.listen(process.env.PORT || 5000);
