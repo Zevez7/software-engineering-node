@@ -1,8 +1,7 @@
 /**
  * @file node server, connect database with models and routes
  */
-import express, { Request, Response } from "express";
-import bodyParser from "body-parser";
+import express from "express";
 import TuitController from "./controllers/TuitController";
 import mongoose from "mongoose";
 import UserController from "./controllers/UserController";
@@ -26,9 +25,9 @@ mongoose.connect(address);
 const userController = UserController.getInstance(app);
 const tuitController = TuitController.getInstance(app);
 const followController = FollowController.getInstance(app);
-// const bookmarkController = BookmarkController.getInstance(app);
-// const messageController = MessageController.getInstance(app);
-// const likesController = LikeController.getInstance(app);
+const bookmarkController = BookmarkController.getInstance(app);
+const messageController = MessageController.getInstance(app);
+const likesController = LikeController.getInstance(app);
 
 // const PORT = 5000;
 app.listen(process.env.PORT || 5000);
