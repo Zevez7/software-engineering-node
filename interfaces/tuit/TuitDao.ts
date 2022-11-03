@@ -30,6 +30,15 @@ export default interface TuitDao {
    * @returns tuit
    */
   createTuit(tuit: Tuit): Promise<Tuit>;
+
+  /**
+   * Create new tuit by user id
+   * @param {tuit} tuit tuit
+   * @param {uid} uid user id
+   * @returns tuit
+   */
+  createTuitByUser(uid: string, tuit: Tuit): Promise<any>;
+
   /**
    * Update tuit
    * @param {string}tid tuit id
@@ -39,8 +48,8 @@ export default interface TuitDao {
   updateTuit(tid: string, tuit: Tuit): Promise<any>;
   /**
    * delete tuit
-   * @param {string}tid tuit id
+   * @param {string}uid user id
    * @returns delete status
    */
-  deleteTuit(tid: string): Promise<any>;
+  deleteTuit(uid: string): Promise<any>;
 }

@@ -50,10 +50,7 @@ export default class TuitDao implements TuitDaoI {
    * @returns tuit
    */
   async findTuitById(tid: string): Promise<any> {
-    return await TuitModel.findById(tid).populate(
-      "postedBy",
-      "username firstName lastName"
-    );
+    return await TuitModel.findById(tid);
   }
   /**
    * Create new tuit
@@ -63,21 +60,33 @@ export default class TuitDao implements TuitDaoI {
   async createTuit(tuit: Tuit): Promise<any> {
     return await TuitModel.create(tuit);
   }
+
+  /**
+   * Create new tuit by user id
+   * @param {tuit} tuit tuit
+   * @param {uid} uid user id
+   * @returns tuit
+   */
+  async createTuitByUser(uid: string, tuit: Tuit): Promise<any> {
+    return await TuitModel.create({ ...tuit, postedBy: uid });
+  }
+
   /**
    * Update tuit
    * @param {string}tid tuit id
    * @param {tuit}tuit tuit to be updated
    * @returns update status
    */
+
   async updateTuit(tid: string, tuit: any): Promise<any> {
     return await TuitModel.updateOne({ _id: tid }, { $set: tuit });
   }
   /**
    * delete tuit
-   * @param {string}tid tuit id
+   * @param {string} uid user id
    * @returns delete status
    */
-  async deleteTuit(tid: string): Promise<any> {
-    return await TuitModel.deleteOne({ _id: tid });
+  async deleteTuit(uid: string): Promise<any> {
+    return await TuitModel.deleteOne({ postedBy: uid });
   }
 }

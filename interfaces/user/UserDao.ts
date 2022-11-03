@@ -38,4 +38,17 @@ export default interface UserDao {
    * @returns delete status
    */
   deleteUser(uid: string): Promise<any>;
+
+  /**
+   * Delete user
+   * @param username user name
+   * @returns delete status
+   */
+  deleteUsersByUsername(username: string): Promise<any>;
+
+  /**
+   * Delete all user
+   * @returns delete status
+   */
+  deleteAllUsers(): Promise<any>;
 }
