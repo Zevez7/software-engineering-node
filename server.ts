@@ -10,6 +10,7 @@ import FollowController from "./controllers/FollowController";
 import BookmarkController from "./controllers/BookmarkController";
 import MessageController from "./controllers/MessageController";
 import LikeController from "./controllers/LikeController";
+import { hostname } from "os";
 
 const cors = require("cors");
 const app = express();
@@ -29,8 +30,8 @@ const bookmarkController = BookmarkController.getInstance(app);
 const messageController = MessageController.getInstance(app);
 const likesController = LikeController.getInstance(app);
 
-const host = "0.0.0.0";
-// const PORT = 5000;
-app.listen(process.env.PORT || 5000, host, function () {
+const hostname: any = "0.0.0.0";
+const PORT: any = process.env.PORT || 5000;
+app.listen(PORT, hostname, function () {
   console.log("Server started.......");
 });
