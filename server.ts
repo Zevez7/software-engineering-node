@@ -2,10 +2,10 @@
  * @file node server, connect database with models and routes
  */
 import express from "express";
-import TuitController from "./controllers/TuitController";
 import mongoose from "mongoose";
-import UserController from "./controllers/UserController";
 
+import TuitController from "./controllers/TuitController";
+import UserController from "./controllers/UserController";
 import FollowController from "./controllers/FollowController";
 import BookmarkController from "./controllers/BookmarkController";
 import MessageController from "./controllers/MessageController";
