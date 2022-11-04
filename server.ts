@@ -29,8 +29,7 @@ const bookmarkController = BookmarkController.getInstance(app);
 const messageController = MessageController.getInstance(app);
 const likesController = LikeController.getInstance(app);
 
-const hostname: any = "0.0.0.0";
 const PORT: any = process.env.PORT || 5000;
-app.listen(PORT, hostname, function () {
+app.listen(PORT, "0.0.0.0", function () {
   console.log("Server started.......");
 });
