@@ -11,11 +11,27 @@ import FollowController from "./controllers/FollowController";
 import BookmarkController from "./controllers/BookmarkController";
 import MessageController from "./controllers/MessageController";
 import LikeController from "./controllers/LikeController";
-
+/**
+ * use cors to prevent cross-origin error
+ * @param  {string} "cors"
+ */
 const cors = require("cors");
+
+/**
+ * set express() to app constat
+ */
 const app = express();
 
+/**
+ * Express calls cors()
+ * @param  {cors} cors
+ */
 app.use(cors());
+
+/**
+ * tell express to accept json request
+ * @param  {} express.json accept json request
+ */
 app.use(express.json());
 
 const address = `mongodb+srv://datnguyen:datnguyentuiter@cluster0.6eip3ug.mongodb.net/?retryWrites=true&w=majority`;
@@ -30,6 +46,12 @@ const messageController = MessageController.getInstance(app);
 const likesController = LikeController.getInstance(app);
 
 const PORT: any = process.env.PORT || 5000;
+/**
+ * Express listen to PORT or 5000 for request
+ * @param  {PORT} PORT local port ro 5000
+ * @param  {string} "0.0.0.0" setting home port to 0.0.0.0
+ * @param  {function} function() console.log "start server"
+ */
 app.listen(PORT, "0.0.0.0", function () {
   console.log("Server started.......");
 });

@@ -38,10 +38,7 @@ export default class TuitDao implements TuitDaoI {
    * @returns array of tuit
    */
   async findTuitsByUser(uid: string): Promise<any> {
-    return await TuitModel.find({ postedBy: uid }).populate(
-      "postedBy",
-      "username firstName lastName"
-    );
+    return await TuitModel.find({ postedBy: uid });
   }
 
   /**
