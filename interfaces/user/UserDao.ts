@@ -51,4 +51,10 @@ export default interface UserDao {
    * @returns delete status
    */
   deleteAllUsers(): Promise<any>;
+
+  /**
+   * Find user by username
+   * @param username user name
+   */
+  findUserByUsername(username: string): Promise<any>;
 }

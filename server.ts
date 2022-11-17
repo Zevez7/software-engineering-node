@@ -18,6 +18,11 @@ import LikeController from "./controllers/LikeController";
 const cors = require("cors");
 
 /**
+ * Add session to the express
+ */
+const session = require("express-session");
+
+/**
  * set express() to app constat
  */
 const app = express();
@@ -34,6 +39,13 @@ app.use(cors());
  */
 app.use(express.json());
 
+let sess = {
+  secret: process.env.SECRET,
+  cookie: {
+    secure: false,
+  },
+};
+
 const address = `mongodb+srv://datnguyen:datnguyentuiter@cluster0.6eip3ug.mongodb.net/?retryWrites=true&w=majority`;
 mongoose.connect(address);
 // mongoose.connect("mongodb://127.0.0.1:27017/tuiter");
@@ -46,6 +58,12 @@ const messageController = MessageController.getInstance(app);
 const likesController = LikeController.getInstance(app);
 
 const PORT: any = process.env.PORT || 5000;
+
+if (process.env.ENV === "PRODUCTION") {
+  app.set("trust proxy", 1); // trust first proxy
+  sess.cookie.secure = true; // serve secure cookies
+}
+
 /**
  * Express listen to PORT or 5000 for request
  * @param  {PORT} PORT local port ro 5000

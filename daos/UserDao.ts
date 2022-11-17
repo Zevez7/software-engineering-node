@@ -55,6 +55,7 @@ export default class UserDao implements UserDaoI {
   async deleteUser(uid: string): Promise<any> {
     return await UserModel.deleteOne({ _id: uid });
   }
+
   /**
    * Delete user by username
    * @param username username
@@ -76,5 +77,15 @@ export default class UserDao implements UserDaoI {
    */
   async updateUser(uid: string, user: any): Promise<any> {
     return await UserModel.updateOne({ _id: uid }, { $set: user });
+  }
+
+  /**
+   * Update user
+   * @param uid user id
+   * @param user user
+   * @returns update status
+   */
+  async findUserByUsername(username: string): Promise<any> {
+    return await UserModel.find({ username: username });
   }
 }

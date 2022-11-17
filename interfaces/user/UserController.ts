@@ -54,4 +54,11 @@ export default interface UserController {
    * on whether updating a user was successful or not
    */
   updateUser(req: Request, res: Response): void;
+
+  /**
+   * find user by username
+   * @param req Request from client including path with paramater username
+   * @param res Response to the client with the found user.
+   */
+  findUserByUsername(req: Request, res: Response): void;
 }

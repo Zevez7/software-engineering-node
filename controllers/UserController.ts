@@ -38,6 +38,10 @@ export default class UserController implements UserControllerI {
 
       app.get("/users", UserController.userController.findAllUsers);
       app.get("/users/:uid", UserController.userController.findUserById);
+      app.get(
+        "/users/username/:username",
+        UserController.userController.findUserByUsername
+      );
       app.post("/users", UserController.userController.createUser);
       app.delete("/users/:uid", UserController.userController.deleteUser);
       app.delete("/users", UserController.userController.deleteAllUsers);
@@ -127,4 +131,15 @@ export default class UserController implements UserControllerI {
     UserController.userDao
       .updateUser(req.params.uid, req.body)
       .then((status) => res.json(status));
+
+  /**
+   *Find user by username
+   * @param {Request} req Represents request from client, including path
+   * parameter username identifying the primary key of the user to be find
+   * @param {Response} res Represents response to client, including the return of the found user
+   */
+  findUserByUsername = (req: Request, res: Response) =>
+    UserController.userDao
+      .findUserByUsername(req.params.username)
+      .then((user) => res.json(user));
 }
