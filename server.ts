@@ -11,6 +11,10 @@ import FollowController from "./controllers/FollowController";
 import BookmarkController from "./controllers/BookmarkController";
 import MessageController from "./controllers/MessageController";
 import LikeController from "./controllers/LikeController";
+import AuthenticationController from "./controllers/auth-controller";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 /**
  * use cors to prevent cross-origin error
  * @param  {string} "cors"
@@ -21,7 +25,6 @@ const cors = require("cors");
  * Add session to the express
  */
 const session = require("express-session");
-
 /**
  * set express() to app constat
  */
@@ -39,13 +42,14 @@ app.use(cors());
  */
 app.use(express.json());
 
-let sess = {
-  secret: process.env.SECRET,
-  cookie: {
-    secure: false,
-  },
-};
+// let sess = {
+//   secret: process.env.SECRET,
+//   cookie: {
+//     secure: false,
+//   },
+// };
 
+// app.use(session(sess));
 const address = `mongodb+srv://datnguyen:datnguyentuiter@cluster0.6eip3ug.mongodb.net/?retryWrites=true&w=majority`;
 mongoose.connect(address);
 // mongoose.connect("mongodb://127.0.0.1:27017/tuiter");
@@ -56,13 +60,14 @@ const followController = FollowController.getInstance(app);
 const bookmarkController = BookmarkController.getInstance(app);
 const messageController = MessageController.getInstance(app);
 const likesController = LikeController.getInstance(app);
+// const authorController = AuthenticationController(app);
 
 const PORT: any = process.env.PORT || 5000;
 
-if (process.env.ENV === "PRODUCTION") {
-  app.set("trust proxy", 1); // trust first proxy
-  sess.cookie.secure = true; // serve secure cookies
-}
+// if (process.env.ENV === "PRODUCTION") {
+//   app.set("trust proxy", 1); // trust first proxy
+//   sess.cookie.secure = true; // serve secure cookies
+// }
 
 /**
  * Express listen to PORT or 5000 for request

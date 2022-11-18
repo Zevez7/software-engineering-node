@@ -1,18 +1,20 @@
+import { Request, Response, Express } from "express";
+
 import UserDao from "../daos/UserDao";
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 
 const AuthenticationController = (app: Express) => {
   const userDao: UserDao = UserDao.getInstance();
-  const signup = async (req, res) => {
+  const signup = async (req: any, res: any) => {
     const newUser = req.body;
     const password = newUser.password;
     const hash = await bcrypt.hash(password, saltRounds);
 
     newUser.password = hash;
-    
+
     const existingUser = await userDao.findUserByUsername(req.body.username);
-    if (existingUser) {
+    if (existingUser.length > 0) {
       res.sendStatus(403);
       return;
     } else {
