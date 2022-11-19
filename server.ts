@@ -37,7 +37,7 @@ const app = express();
 app.use(
   cors({
     credentials: true,
-    origin: "http://localhost:5000",
+    origin: "http://localhost:3000",
     optionsSuccessStatus: 200,
   })
 );
@@ -66,14 +66,14 @@ const followController = FollowController.getInstance(app);
 const bookmarkController = BookmarkController.getInstance(app);
 const messageController = MessageController.getInstance(app);
 const likesController = LikeController.getInstance(app);
-// const authorController = AuthenticationController(app);
+const authorController = AuthenticationController(app);
 
 const PORT: any = process.env.PORT || 5000;
 
-// if (process.env.ENV === "PRODUCTION") {
-//   app.set("trust proxy", 1); // trust first proxy
-//   sess.cookie.secure = true; // serve secure cookies
-// }
+if (process.env.ENV === "PRODUCTION") {
+  app.set("trust proxy", 1); // trust first proxy
+  sess.cookie.secure = true; // serve secure cookies
+}
 
 /**
  * Express listen to PORT or 5000 for request
@@ -85,4 +85,4 @@ const PORT: any = process.env.PORT || 5000;
 //   console.log("Server started.......");
 // });
 
-app.listen(PORT);
+app.listen(5000);

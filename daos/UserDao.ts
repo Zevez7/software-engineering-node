@@ -86,6 +86,6 @@ export default class UserDao implements UserDaoI {
    * @returns update status
    */
   async findUserByUsername(username: string): Promise<any> {
-    return await UserModel.find({ username: username });
+    return await UserModel.findOne({ username: username });
   }
 }
