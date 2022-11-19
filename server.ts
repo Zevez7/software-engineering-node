@@ -34,7 +34,13 @@ const app = express();
  * Express calls cors()
  * @param  {cors} cors
  */
-app.use(cors());
+app.use(
+  cors({
+    credentials: true,
+    origin: "http://localhost:5000",
+    optionsSuccessStatus: 200,
+  })
+);
 
 /**
  * tell express to accept json request
@@ -42,14 +48,14 @@ app.use(cors());
  */
 app.use(express.json());
 
-// let sess = {
-//   secret: process.env.SECRET,
-//   cookie: {
-//     secure: false,
-//   },
-// };
+let sess = {
+  secret: process.env.SECRET,
+  cookie: {
+    secure: false,
+  },
+};
 
-// app.use(session(sess));
+app.use(session(sess));
 const address = `mongodb+srv://datnguyen:datnguyentuiter@cluster0.6eip3ug.mongodb.net/?retryWrites=true&w=majority`;
 mongoose.connect(address);
 // mongoose.connect("mongodb://127.0.0.1:27017/tuiter");
@@ -75,6 +81,8 @@ const PORT: any = process.env.PORT || 5000;
  * @param  {string} "0.0.0.0" setting home port to 0.0.0.0
  * @param  {function} function() console.log "start server"
  */
-app.listen(PORT, "0.0.0.0", function () {
-  console.log("Server started.......");
-});
+// app.listen(PORT, "0.0.0.0", function () {
+//   console.log("Server started.......");
+// });
+
+app.listen(PORT);
