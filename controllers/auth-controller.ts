@@ -6,15 +6,17 @@ const saltRounds = 10;
 
 const AuthenticationController = (app: Express) => {
   const userDao: UserDao = UserDao.getInstance();
+
   const signup = async (req: any, res: any) => {
     const newUser = req.body;
+    console.log(newUser);
     const password = newUser.password;
     const hash = await bcrypt.hash(password, saltRounds);
 
     newUser.password = hash;
 
     const existingUser = await userDao.findUserByUsername(req.body.username);
-    if (existingUser.length > 0) {
+    if (existingUser) {
       res.sendStatus(403);
       return;
     } else {
@@ -41,7 +43,6 @@ const AuthenticationController = (app: Express) => {
 
   const login = async (req: any, res: any) => {
     const user = req.body;
-    console.log(user);
     const username = user.username;
     const password = user.password;
     const existingUser = await userDao.findUserByUsername(username);
@@ -53,6 +54,7 @@ const AuthenticationController = (app: Express) => {
     if (match) {
       existingUser.password = "*****";
       req.session["profile"] = existingUser;
+      console.log(req.session);
       res.json(existingUser);
     } else {
       res.sendStatus(403);
