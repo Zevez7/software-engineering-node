@@ -49,7 +49,8 @@ app.use(
 app.use(express.json());
 
 let sess = {
-  secret: process.env.SECRET,
+  // secret: process.env.SECRET,
+  secret: "REDCAT",
   cookie: {
     secure: false,
   },
