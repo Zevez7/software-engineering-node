@@ -39,6 +39,8 @@ app.use(
     credentials: true,
     origin: true,
     optionsSuccessStatus: 200,
+    methods: ["GET", "POST"],
+    allowedHeaders: ["Content-Type"],
   })
 );
 
