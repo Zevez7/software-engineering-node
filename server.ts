@@ -37,10 +37,8 @@ const app = express();
 app.use(
   cors({
     credentials: true,
-    origin: true,
+    origin: "https://charming-longma-ce520b.netlify.app",
     optionsSuccessStatus: 200,
-    methods: ["GET", "POST"],
-    allowedHeaders: ["Content-Type"],
   })
 );
 
