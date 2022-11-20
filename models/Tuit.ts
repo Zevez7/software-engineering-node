@@ -13,5 +13,9 @@ export default class Tuit {
   private tuit: string = "";
   private postedOn: Date = new Date();
   private postedBy: User | null = null;
-  private stats: Object;
+  public stats: {
+    replies: number;
+    retuits: number;
+    likes: number;
+  };
 }

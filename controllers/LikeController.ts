@@ -9,6 +9,7 @@ import TuitDao from "../daos/TuitDao";
 import TuitControllerI from "../interfaces/tuit/TuitController";
 import TuitDaoI from "../interfaces/tuit/TuitDao";
 import TuitController from "./TuitController";
+import Tuit from "../models/Tuit";
 
 /**
  * @class LikeController Implements RESTful Web service API for likes resource.
@@ -156,7 +157,7 @@ export default class LikeController implements LikeControllerI {
         await LikeController.likeDao.countHowManyLikedTuit(tid);
       console.log("userAlreadyLikedTuit", userAlreadyLikedTuit);
       console.log(howManyLikedTuit);
-      let tuit: any = await tuitDao.findTuitById(tid);
+      let tuit: Tuit = await tuitDao.findTuitById(tid);
       console.log(tuit);
       if (userAlreadyLikedTuit) {
         await LikeController.likeDao.userUnlikesTuit(userId, tid);
