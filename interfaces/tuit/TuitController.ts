@@ -67,4 +67,11 @@ export default interface TuitController {
    * on whether deleting a user was successful or not
    */
   deleteTuit(req: Request, res: Response): void;
+
+  /**
+   * update the like stats on a tuit by tuid id
+   * @param {Request} req Represents request from client with a body that has the newStats and tid
+   * @param {Response} res Represents response to client, response with a update status successful or not
+   */
+  updateLikes(req: Request, res: Response): void;
 }

@@ -52,4 +52,11 @@ export default interface TuitDao {
    * @returns delete status
    */
   deleteTuit(uid: string): Promise<any>;
+
+  /**
+   * Update the stat of a tuit.
+   * @param tid tuit id
+   * @param newStats the updating stat for the tuit
+   */
+  updateLikes(tid: string, newStats: any): Promise<any>;
 }

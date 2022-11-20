@@ -37,7 +37,7 @@ const app = express();
 app.use(
   cors({
     credentials: true,
-    origin: "https://charming-longma-ce520b.netlify.app",
+    origin: true,
     optionsSuccessStatus: 200,
   })
 );
@@ -82,8 +82,8 @@ if (process.env.ENV === "PRODUCTION") {
  * @param  {string} "0.0.0.0" setting home port to 0.0.0.0
  * @param  {function} function() console.log "start server"
  */
-app.listen(PORT, "0.0.0.0", function () {
-  console.log("Server started.......");
-});
+// app.listen(PORT, "0.0.0.0", function () {
+//   console.log("Server started.......");
+// });
 
-// app.listen(5000);
+app.listen(PORT);

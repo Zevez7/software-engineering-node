@@ -161,4 +161,14 @@ export default class TuitController implements TuitControllerI {
     TuitController.tuitDao
       .updateTuit(req.params.tid, req.body)
       .then((status) => res.json(status));
+
+  /**
+   * update the like stats on a tuit by tuid id
+   * @param {Request} req Represents request from client with a body that has the newStats and tid
+   * @param {Response} res Represents response to client, response with a update status successful or not
+   */
+  updateLikes = (req: Request, res: Response) =>
+    TuitController.tuitDao
+      .updateLikes(req.params.tid, req.body)
+      .then((status) => res.json(status));
 }

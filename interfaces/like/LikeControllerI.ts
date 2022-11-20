@@ -40,4 +40,24 @@ export default interface LikeControllerI {
    * on whether deleting the like was successful or not
    */
   userUnlikesTuit(req: Request, res: Response): void;
+
+  /**
+   *
+   * @param {Request} req Represents request from client, including the
+   * path parameters uid and tid representing the user that is to find a liked tuit
+   * @param {Response} res Represents response to client, returning the liked tuit.
+   */
+  findUserLikesTuit(req: Request, res: Response): void;
+
+  /**
+   * @param {Request} req Represents request from client, include a parameter for tuit id
+   * @param {Response} res Represents response to client, returning the count of how many liked tuit
+   */
+  countHowManyLikedTuit(req: Request, res: Response): void;
+
+  /**
+   * @param {Request} req Represents request from client, include a parameter for tuit id and user id
+   * @param {Response} res Represents response to client, returning  a status for success or failed
+   */
+  userTogglesTuitLikes(req: Request, res: Response): void;
 }
