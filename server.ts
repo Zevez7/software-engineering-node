@@ -13,6 +13,7 @@ import MessageController from "./controllers/MessageController";
 import LikeController from "./controllers/LikeController";
 import AuthenticationController from "./controllers/auth-controller";
 import * as dotenv from "dotenv";
+import DislikeController from "./controllers/DislikeController";
 
 dotenv.config();
 /**
@@ -67,6 +68,7 @@ const followController = FollowController.getInstance(app);
 const bookmarkController = BookmarkController.getInstance(app);
 const messageController = MessageController.getInstance(app);
 const likesController = LikeController.getInstance(app);
+const dislikesController = DislikeController.getInstance(app);
 const authorController = AuthenticationController(app);
 
 const PORT: any = process.env.PORT || 5000;

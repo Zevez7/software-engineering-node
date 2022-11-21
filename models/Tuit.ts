@@ -17,5 +17,6 @@ export default class Tuit {
     replies: number;
     retuits: number;
     likes: number;
+    dislikes: number;
   };
 }
