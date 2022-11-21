@@ -8,6 +8,15 @@ import { Request, Response } from "express";
  */
 export default interface DislikeControllerI {
   /**
+   * Retrieves all disliked with a user id from the database
+   * @param {Request} req Represents request from client, including the
+   * parameter uid representing the user uid
+   * @param {Response} res Represents response to client, including the
+   * body formatted as JSON arrays containing the disliked objects for the user
+   */
+  findAllTuitsDislikedByUser(req: Request, res: Response): void;
+
+  /**
    * @param {Request} req Represents request from client, including the
    * path parameters uid and tid representing the user that is disliking the tuit
    * and the tuit being disliked

@@ -41,7 +41,10 @@ export default class DislikeController implements DislikeControllerI {
   public static getInstance = (app: Express): DislikeController => {
     if (DislikeController.dislikeController === null) {
       DislikeController.dislikeController = new DislikeController();
-
+      app.get(
+        "/api/users/:uid/dislikes",
+        DislikeController.dislikeController.findAllTuitsDislikedByUser
+      );
       app.post(
         "/api/users/:uid/dislikes/:tid",
         DislikeController.dislikeController.userDislikesTuit
@@ -59,7 +62,29 @@ export default class DislikeController implements DislikeControllerI {
   };
 
   private constructor() {}
-
+  /**
+   * Retrieves all disliked with a user id from the database
+   * @param {Request} req Represents request from client, including the
+   * parameter uid representing the user uid
+   * @param {Response} res Represents response to client, including the
+   * body formatted as JSON arrays containing the disliked objects for the user
+   */
+  findAllTuitsDislikedByUser = (req: any, res: any) => {
+    const uid = req.params.uid;
+    const profile = req.session["profile"];
+    const userId = uid === "me" && profile ? profile._id : uid;
+    DislikeController.dislikeDao
+      .findAllTuitsDislikedByUser(userId)
+      .then((dislikes) => {
+        const dislikesNonNullTuits = dislikes.filter(
+          (dislikes) => dislikes.tuit
+        );
+        const tuitsFromDislike = dislikesNonNullTuits.map(
+          (dislikes) => dislikes.tuit
+        );
+        res.json(tuitsFromDislike);
+      });
+  };
   /**
    * @param {Request} req Represents request from client, including the
    * path parameters uid and tid representing the user that is disliking the tuit

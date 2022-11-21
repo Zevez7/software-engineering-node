@@ -26,10 +26,25 @@ export default class DislikeDao implements DislikeDaoI {
   private constructor() {}
 
   /**
+   * Find all tuits by user id
+   * @param {string} uid user id
+   * @returns Dislike
+   */
+  findAllTuitsDislikedByUser = async (uid: string): Promise<Dislike[]> =>
+    DislikeModel.find({ DislikedBy: uid })
+      .populate({
+        path: "tuit",
+        populate: {
+          path: "postedBy",
+        },
+      })
+      .exec();
+
+  /**
    * Create a dislike from user id and tuit id
    * @param {string} uid user id
    * @param {string} tid tuit id
-   * @returns like
+   * @returns Dislike
    */
   userDislikesTuit = async (uid: string, tid: string): Promise<any> =>
     DislikeModel.create({ tuit: tid, dislikedBy: uid });
@@ -45,7 +60,7 @@ export default class DislikeDao implements DislikeDaoI {
   /**
    * Find all tuits disliked by user id
    * @param {string} uid user id
-   * @returns like
+   * @returns Dislike
    */
   findUserDislikesTuit = async (uid: string, tid: string): Promise<any> =>
     DislikeModel.findOne({ tuit: tid, dislikedby: uid });

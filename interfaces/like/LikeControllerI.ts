@@ -16,7 +16,7 @@ export default interface LikeControllerI {
    */
   findAllUsersThatLikedTuit(req: Request, res: Response): void;
   /**
-   * Retrieves all tuits liked by a user from the database
+   * Retrieves all liked with a user id from the database
    * @param {Request} req Represents request from client, including the path
    * parameter uid representing the user liked the tuits
    * @param {Response} res Represents response to client, including the

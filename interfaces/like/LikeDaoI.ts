@@ -15,7 +15,7 @@ export default interface LikeDaoI {
    */
   findAllUsersThatLikedTuit(tid: string): Promise<Like[]>;
   /**
-   * Find all tuits by user id
+   * Find all liked tuits by user id
    * @param {string} uid user id
    * @returns like
    */

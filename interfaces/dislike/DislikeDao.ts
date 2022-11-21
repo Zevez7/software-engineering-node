@@ -9,10 +9,17 @@ import DisLike from "../../models/Dislike";
 
 export default interface DislikeDao {
   /**
+   * Find all disliked tuit by user id
+   * @param {string} uid user id
+   * @returns dislike
+   */
+  findAllTuitsDislikedByUser(uid: string): Promise<DisLike[]>;
+
+  /**
    * Create a dislike for a tuit
    * @param {string}uid user id
    * @param {string}tid tuit id
-   * @returns like
+   * @returns dislike
    */
   userDislikesTuit(tid: string, uid: string): Promise<any>;
   /**
