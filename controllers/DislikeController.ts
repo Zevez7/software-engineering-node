@@ -8,6 +8,8 @@ import DislikeControllerI from "../interfaces/dislike/DislikeController";
 import TuitDao from "../daos/TuitDao";
 import TuitDaoI from "../interfaces/tuit/TuitDao";
 import Tuit from "../models/Tuit";
+import LikeDao from "../daos/LikeDao";
+import LikeDaoI from "../interfaces/like/LikeDaoI";
 
 /**
  * @class DislikeController Implements RESTful Web service API for likes resource.
@@ -109,6 +111,7 @@ export default class DislikeController implements DislikeControllerI {
    */
   userTogglesTuitDislikes = async (req: any, res: any) => {
     const tuitDao: TuitDaoI = TuitDao.getInstance();
+    const likeDao: LikeDaoI = LikeDao.getInstance();
     const uid = req.params.uid;
     const tid = req.params.tid;
     const profile = req.session["profile"];
@@ -116,18 +119,29 @@ export default class DislikeController implements DislikeControllerI {
     try {
       const userAlreadyDislikedTuit =
         await DislikeController.dislikeDao.findUserDislikesTuit(userId, tid);
+
+      const userAlreadyLikedTuit = await likeDao.findUserLikesTuit(userId, tid);
+
       const howManyDislikedTuit =
         await DislikeController.dislikeDao.countHowManyDislikedTuit(tid);
-      console.log("userAlreadyLikedTuit", userAlreadyDislikedTuit);
-      console.log(howManyDislikedTuit);
+
+      const howManyLikedTuit = await likeDao.countHowManyLikedTuit(tid);
+
       let tuit: Tuit = await tuitDao.findTuitById(tid);
       console.log(tuit);
       if (userAlreadyDislikedTuit) {
+        // if already disliked, delete disliked
         await DislikeController.dislikeDao.userUnDislikesTuit(userId, tid);
         tuit.stats.dislikes = howManyDislikedTuit - 1;
       } else {
+        // if not disliked, then add disliked
         await DislikeController.dislikeDao.userDislikesTuit(userId, tid);
         tuit.stats.dislikes = howManyDislikedTuit + 1;
+
+        if (userAlreadyLikedTuit) {
+          await likeDao.userUnlikesTuit(userId, tid);
+          tuit.stats.likes = howManyLikedTuit - 1;
+        }
       }
       await tuitDao.updateLikes(tid, tuit.stats);
       res.sendStatus(200);

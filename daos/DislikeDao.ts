@@ -32,7 +32,7 @@ export default class DislikeDao implements DislikeDaoI {
    * @returns like
    */
   userDislikesTuit = async (uid: string, tid: string): Promise<any> =>
-    DislikeModel.create({ tuit: tid, dislikedby: uid });
+    DislikeModel.create({ tuit: tid, dislikedBy: uid });
   /**
    * Delete a dislike from database
    * @param {string} uid user id

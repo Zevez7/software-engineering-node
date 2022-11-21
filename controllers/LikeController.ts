@@ -6,10 +6,12 @@ import LikeDao from "../daos/LikeDao";
 import LikeControllerI from "../interfaces/like/LikeControllerI";
 
 import TuitDao from "../daos/TuitDao";
-import TuitControllerI from "../interfaces/tuit/TuitController";
 import TuitDaoI from "../interfaces/tuit/TuitDao";
 import TuitController from "./TuitController";
 import Tuit from "../models/Tuit";
+
+import DislikeDao from "../daos/DislikeDao";
+import DislikeDaoI from "../interfaces/dislike/DislikeDao";
 
 /**
  * @class LikeController Implements RESTful Web service API for likes resource.
@@ -51,6 +53,10 @@ export default class LikeController implements LikeControllerI {
       app.get(
         "/api/tuits/:tid/likes",
         LikeController.likeController.findAllUsersThatLikedTuit
+      );
+      app.get(
+        "/api/users/:uid/likes/:tid",
+        LikeController.likeController.findUserLikesTuit
       );
       app.post(
         "/api/users/:uid/likes/:tid",
@@ -146,6 +152,7 @@ export default class LikeController implements LikeControllerI {
    */
   userTogglesTuitLikes = async (req: any, res: any) => {
     const tuitDao: TuitDaoI = TuitDao.getInstance();
+    const dislikeDao: DislikeDaoI = DislikeDao.getInstance();
     const uid = req.params.uid;
     const tid = req.params.tid;
     const profile = req.session["profile"];
@@ -153,18 +160,35 @@ export default class LikeController implements LikeControllerI {
     try {
       const userAlreadyLikedTuit =
         await LikeController.likeDao.findUserLikesTuit(userId, tid);
+
+      const userAlreadyDislikedTuit = await dislikeDao.findUserDislikesTuit(
+        userId,
+        tid
+      );
+
       const howManyLikedTuit =
         await LikeController.likeDao.countHowManyLikedTuit(tid);
-      console.log("userAlreadyLikedTuit", userAlreadyLikedTuit);
-      console.log(howManyLikedTuit);
+
+      const howManyDislikedTuit = await dislikeDao.countHowManyDislikedTuit(
+        tid
+      );
+
       let tuit: Tuit = await tuitDao.findTuitById(tid);
       console.log(tuit);
       if (userAlreadyLikedTuit) {
+        // if already liked, delete like
         await LikeController.likeDao.userUnlikesTuit(userId, tid);
         tuit.stats.likes = howManyLikedTuit - 1;
       } else {
+        // if not liked, add like
         await LikeController.likeDao.userLikesTuit(userId, tid);
         tuit.stats.likes = howManyLikedTuit + 1;
+
+        // if tuit is disliked, delete disliked
+        if (userAlreadyDislikedTuit) {
+          await dislikeDao.userUnDislikesTuit(userId, tid);
+          tuit.stats.dislikes = howManyDislikedTuit - 1;
+        }
       }
       await tuitDao.updateLikes(tid, tuit.stats);
       res.sendStatus(200);
