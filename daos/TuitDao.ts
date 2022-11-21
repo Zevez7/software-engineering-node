@@ -93,6 +93,9 @@ export default class TuitDao implements TuitDaoI {
    * @param newStats the new status that's updating
    */
   async updateLikes(tid: string, newStats: any): Promise<any> {
-    TuitModel.updateOne({ _id: tid }, { $set: { stats: newStats } });
+    return await TuitModel.updateOne(
+      { _id: tid },
+      { $set: { stats: newStats } }
+    );
   }
 }
