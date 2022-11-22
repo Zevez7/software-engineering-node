@@ -58,10 +58,10 @@ let sess = {
 };
 
 app.use(session(sess));
-const address = `mongodb+srv://datnguyen:datnguyentuiter@cluster0.6eip3ug.mongodb.net/?retryWrites=true&w=majority`;
+// const address = `mongodb+srv://datnguyen:datnguyentuiter@cluster0.6eip3ug.mongodb.net/?retryWrites=true&w=majority`;
+const address = `mongodb+srv://datnguyen:datnguyentuiter@cluster0.6eip3ug.mongodb.net/A4?retryWrites=true&w=majority`;
 mongoose.connect(address);
 // mongoose.connect("mongodb://127.0.0.1:27017/tuiter");
-
 const userController = UserController.getInstance(app);
 const tuitController = TuitController.getInstance(app);
 const followController = FollowController.getInstance(app);
