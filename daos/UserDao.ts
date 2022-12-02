@@ -81,8 +81,7 @@ export default class UserDao implements UserDaoI {
 
   /**
    * Update user
-   * @param uid user id
-   * @param user user
+   * @param username user name
    * @returns update status
    */
   async findUserByUsername(username: string): Promise<any> {

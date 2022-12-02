@@ -54,7 +54,6 @@ const AuthenticationController = (app: Express) => {
     if (match) {
       existingUser.password = "*****";
       req.session["profile"] = existingUser;
-      console.log(req.session);
       res.json(existingUser);
     } else {
       res.sendStatus(403);
