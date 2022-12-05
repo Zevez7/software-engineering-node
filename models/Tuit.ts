@@ -8,6 +8,7 @@ import User from "./user/User";
  * @property {string} tuit the tuit messages
  * @property {Date} postedOn the date tuit created
  * @property {User} postedBy the user that created the tuit
+ * @property {object} stats the status used for tuits
  */
 export default class Tuit {
   private tuit: string = "";
