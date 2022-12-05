@@ -4,8 +4,10 @@
 import mongoose from "mongoose";
 
 /**
- * TuitSchema
- * @constructor TuitSchema
+ * @typedef TuitSchema represents tuits posted by user
+ * @property {string} tuit represents tuit of the user
+ * @property {string} postedOn represents date when tuit was posted on
+ * @property {string} postedBy represents the user who posted the tuit
  */
 
 const TuitSchema = new mongoose.Schema(

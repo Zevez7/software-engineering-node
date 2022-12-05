@@ -29,7 +29,10 @@ export default class TuitDao implements TuitDaoI {
    * @returns array of tuit
    */
   async findAllTuits(): Promise<Tuit[]> {
-    return await TuitModel.find();
+    return await TuitModel.find().sort({ postedOn: -1 }).populate({
+      path: "postedBy",
+      select: "username",
+    });
   }
 
   /**
