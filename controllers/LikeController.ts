@@ -180,7 +180,6 @@ export default class LikeController implements LikeControllerI {
       );
 
       let tuit: Tuit = await tuitDao.findTuitById(tid);
-      console.log(tuit);
       if (userAlreadyLikedTuit) {
         // if already liked, delete like
         await LikeController.likeDao.userUnlikesTuit(userId, tid);

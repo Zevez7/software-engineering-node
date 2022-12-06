@@ -96,6 +96,14 @@ export default class TuitDao implements TuitDaoI {
   }
 
   /**
+   * delete tuit
+   * @param {string} uid user id
+   * @returns delete status
+   */
+  async deleteTuitByTid(tid: string): Promise<any> {
+    return await TuitModel.deleteOne({ _id: tid });
+  }
+  /**
    * Updating the likes on a tuit message
    * @param tid tuit id
    * @param newStats the new status that's updating

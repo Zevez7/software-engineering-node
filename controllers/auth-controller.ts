@@ -9,7 +9,6 @@ const AuthenticationController = (app: Express) => {
 
   const signup = async (req: any, res: any) => {
     const newUser = req.body;
-    console.log(newUser);
     const password = newUser.password;
     const hash = await bcrypt.hash(password, saltRounds);
 

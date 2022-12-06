@@ -50,6 +50,11 @@ export default class TuitController implements TuitControllerI {
 
       app.delete("/tuits/:uid", TuitController.tuitController.deleteTuit);
 
+      app.delete(
+        "/tuits/tuit/:tid",
+        TuitController.tuitController.deleteTuitByTid
+      );
+
       app.put("/tuits/:tid", TuitController.tuitController.updateTuit);
     }
 
@@ -139,7 +144,7 @@ export default class TuitController implements TuitControllerI {
   };
 
   /**
-   * Delete tuit by tuit id
+   * Delete tuit by user id
    * @param {Request} req Represents request from client, including path
    * parameter uid identifying the primary key of the tuit to be removed
    * @param {Response} res Represents response to client, including status
@@ -148,6 +153,18 @@ export default class TuitController implements TuitControllerI {
   deleteTuit = (req: Request, res: Response) =>
     TuitController.tuitDao
       .deleteTuit(req.params.uid)
+      .then((status) => res.json(status));
+
+  /**
+   * Delete tuit by tuit id
+   * @param {Request} req Represents request from client, including path
+   * parameter uid identifying the primary key of the tuit to be removed
+   * @param {Response} res Represents response to client, including status
+   * on whether deleting a user was successful or not
+   */
+  deleteTuitByTid = (req: Request, res: Response) =>
+    TuitController.tuitDao
+      .deleteTuitByTid(req.params.tid)
       .then((status) => res.json(status));
 
   /**
