@@ -61,4 +61,12 @@ export default interface UserController {
    * @param res Response to the client with the found user.
    */
   findUserByUsername(req: Request, res: Response): void;
+
+  /**
+   * Delete user by username
+   * @param {Request} req Represents request from client,
+   * @param {Response} res Represents response to client, including status
+   * on whether deleting a user was successful or not
+   */
+  deleteUsersByUsername(req: Request, res: Response): void;
 }
